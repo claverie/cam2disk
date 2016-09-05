@@ -40,12 +40,8 @@ function trace {
     logger -p local7.debug "[$1] $2"
 }
 
-function getAllFilesFromCam {
-    $GPHOTO $GPHOTO_OPT --hook-script "$HOOK_SCRIPT" --get-all-files
-}
-
 function  getFileFromCam {
-    $GPHOTO $GPHOTO_OPT --hook-script "$HOOK_SCRIPT" -p $1
+    $GPHOTO $GPHOTO_OPT -p $1
 }
 
 function gDetect {
@@ -73,3 +69,7 @@ function gGetPhoto {
     $GPHOTO $GPHOTO_OPT --get-all-files --hook-script="$GLIBDIR/gphoto-hook-retrieving.sh"
 }
     
+echo "gGetPhoto: récupération des photos"
+echo "gListFile: liste les photos"
+echo "gDetect: vérifie si l'appareil est detecté"
+echo "getFileFromCam <FIC>: récupère le fichier <FIC> sur l'appareil"

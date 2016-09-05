@@ -16,6 +16,7 @@ case "$ACTION" in
 	if [ -f "$TARGET_DIR/$NFILE" ]; then
 	    state="PASSED"
 	    echo "lib-photo: $ARGUMENT ($YEA-$MON-$DAY $HOU:$MIN.$SEC) déjà récupérée."
+	    rm $ARGUMENT
 	else
 	    state="OK"
 	    echo "lib-photo: récupération de $ARGUMENT ($EXT) -> $TARGET_DIR/$NFILE"	    
@@ -26,10 +27,10 @@ case "$ACTION" in
 	    }
 	    mv "$ARGUMENT" "$TARGET_DIR/$NFILE"
 	    # Update Owner
-	    [ "$EXT" != "MOV" ] && {
+	    if [ "$EXT" != "MOV" && "$EXT" != "MTS"  ]; then
 		exiftool -q -overwrite_original -Exif:Artist="$ARTIST" "$TARGET_DIR/$NFILE"
 		exiftool -q -g1 -j "$TARGET_DIR/$NFILE" > "$TARGET_DIR/.exif/.$NFILE.exif.json"
-	    }
+	    fi
 	fi
 
 	;;
