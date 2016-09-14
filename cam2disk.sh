@@ -17,7 +17,7 @@ function usage {
 trace "--" "Checkinf for $GPHOTO"
 
 if [ ! -n "$1" ]; then
-    getAllFilesFromCam 
+    gGetPhoto 
 else
     getFileFromCam "$1"
 fi
